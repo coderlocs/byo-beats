@@ -1,6 +1,6 @@
-<div class="h-full w-full max-w-xs mx-auto align-middle">
+<div class="w-2/5 mx-auto align-center my-16">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'}) do |f| %>
-    <h2 class="text-center">Register</h2>
+    <h2 class="text-center font-semibold mb-8">Register</h2>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <%
@@ -26,9 +26,12 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: input_classes %>
     </div>
 
-    <div class="flex items-center justify-between content-end">
-      <%= f.submit "Register", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
-      <%= render "devise/shared/links" %>
+    <div class="">
+      <%= f.submit "Signup", class: "w-full bg-purple-500 hover:bg-blue-500 text-white font-bold mt-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="my-4">
+      <p class="text-sm text-center text-gray-700 "> Already have an account? <%= link_to('Login', new_user_session_path, class: "text-sm text-blue-500")  %> </p>
     </div>
   <% end %>
 </div>
