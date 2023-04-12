@@ -1,29 +1,25 @@
-<nav class="flex px-16 space-x-64 items-baseline border-b-2 py-8 bg-gray-50">
-  <div class=container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center>
-    <%= link_to root_path, class: "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-      </svg>
-      <span class="ml-3 text-xl">BYO BEATS .</span>
+<nav class="flex px-16 space-x-64 items-baseline border-b-2 py-4 bg-gray-50">
+  <%= link_to root_path, class: "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" do %>
+    <%= image_tag "byo_beats.png", class: "w-20 h-10 rounded-full cursor-pointer", alt: "logo" %>
+    <span class="ml-3 text-xl">BYO BEATS .</span>
+  <% end %>
+  <div class="flex space-x-12" >
+    <h3 class="font-medium text-base"> Explore </h3>
+    <h3 class="font-medium text-base"> Register Your Band </h3>
+  </div>
+  <div>
+    <% if user_signed_in? %>
+      <div class="flex space-x-6 items-baseline" >
+        <%= link_to user_path(current_user) do %>
+          <%= image_tag "profile_pic.png", class: "w-10 h-10 rounded-full cursor-pointer", alt: "profile pic" %>
+        <% end %>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "text-gray-800 font-semibold hover:text-purple-500" %>
+      </div>
+    <% else %>
+      <div class="flex space-x-6 " >
+        <%= link_to('Login', new_user_session_path, class: "hover:bg-gray-100 text-gray-800 font-semibold py-1  px-4 border border-gray-400 rounded shadow")  %>
+        <%= link_to('Sign Up', new_user_registration_path, class: "bg-purple-500 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded")  %>
+      </div>
     <% end %>
-    <div class="flex space-x-12" >
-      <h3 class="font-medium text-base"> Explore </h3>
-      <h3 class="font-medium text-base"> Register Your Band </h3>
-    </div>
-    <div>
-      <% if user_signed_in? %>
-        <div class="flex space-x-6 items-baseline" >
-          <%= link_to user_path(current_user) do %>
-            <%= image_tag "profile_pic.png", class: "w-10 h-10 rounded-full cursor-pointer", alt: "profile pic" %>
-          <% end %>
-          <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "text-gray-800 font-semibold hover:text-purple-500" %>
-        </div>
-      <% else %>
-        <div class="flex space-x-6 " >
-          <%= link_to('Login', new_user_session_path, class: "hover:bg-gray-100 text-gray-800 font-semibold py-1  px-4 border border-gray-400 rounded shadow")  %>
-          <%= link_to('Sign Up', new_user_registration_path, class: "bg-purple-500 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded")  %>
-        </div>
-      <% end %>
-    </div>
   </div>
 </nav>
