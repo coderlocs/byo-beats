@@ -1,10 +1,10 @@
-<%= form_with(model: group, class: "contents") do |form| %>
-  <% if group.errors.any? %>
+<%= form_with(model: band, class: "contents") do |form| %>
+  <% if band.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+      <h2><%= pluralize(band.errors.count, "error") %> prohibited this band from being saved:</h2>
 
       <ul>
-        <% group.errors.each do |error| %>
+        <% band.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
