@@ -16,10 +16,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_134651) do
 
   create_table "bands", force: :cascade do |t|
     t.bigint "owner_id", null: false
-    t.string "permalink", null: false
+    t.string "phonenumber", null: false
     t.string "name", null: false
     t.text "bio"
-    t.string "image"
+    t.text "image_data"
     t.string "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
