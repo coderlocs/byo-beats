@@ -31,7 +31,7 @@
       <div class="container px-5 py-8 mx-auto flex flex-wrap">
         <div class="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
           <% if @band.image %>
-            <%= image_tag @band.image_url class: "object-cover object-center h-full w-full" %>
+            <%= image_tag @band.image_url class: "object-cover object-center h-full w-full", alt: band.name %>
           <% else %>
             <img alt="feature" class="object-cover object-center h-full w-full" src="https://dummyimage.com/600x600/edf2f7/a5afbd">
           <% end %>
