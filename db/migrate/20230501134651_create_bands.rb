@@ -7,6 +7,7 @@ class CreateBands < ActiveRecord::Migration[7.0]
       t.text :bio
       t.text :image_data
       t.string :rate
+      t.boolean :featured, default: false
 
       t.timestamps
     end

@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_134651) do
     t.text "bio"
     t.text "image_data"
     t.string "rate"
+    t.boolean "featured", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_bands_on_owner_id"
