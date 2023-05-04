@@ -1,35 +1,101 @@
-<header class="text-gray-700 body-font border-b border-gray-200">
-  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+<nav class="text-gray-700 body-font border-b border-gray-200">
+  <div class="p-5 flex justify-between items-center">
     <%= link_to root_path, class: "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" do %>
       <%= image_tag "byo_beats.png", class: "w-20 h-10 rounded-full cursor-pointer", alt: "logo" %>
       <span class="ml-3 text-xl">BYO BEATS .</span>
     <% end %>
-
-    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-      <div class="md:block flex md:items-center">
+    <!-- MOBILE NAV ICON -->
+    <div class="md:hidden block absolute top-4 right-8 fixed">
+      <button aria-label="navigation" type="button"  class="md:hidden text-gray-200 transition duration-300 focus:outline-none focus:text-white hover:text-white">
+        <div id="bars" class="ml-4 w-8 h-8 inline-flex items-center justify-center text-gray-900 flex-shrink-0">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"></path>
+          </svg>
+        </div>
+      </button>
+    </div>
+    <!-- NAVIGATION - LARGE SCREENS -->
+    <div class="hidden md:flex">
+      <ul class="hidden md:flex">
         <% if user_signed_in? %>
-          <div class="flex md:space-x-6 items-center ml-auto">
-            <%= link_to 'Register Your Band', new_band_path, class: "text-gray-800 font-medium hover:text-purple-500" %>
-            <%= link_to user_path(current_user) do %>
-              <div class="flex items-center mb-3">
-                <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-purple-500 text-white flex-shrink-0">
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </div>
-                <%= current_user.firstname %>
-              </div>
+          <% if current_user.band.present? %>
+            <li class="text-lg pr-8">
+              <%= link_to 'My Band', band_path(current_user.band), class: "transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;" %>
+            </li>
+          <% else %>
+            <li class="text-lg pr-8 ">
+              <%= link_to 'Register Your Band', new_band_path, class: "transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;" %>
+            </li>
             <% end %>
-            <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "text-gray-800 font-medium hover:text-purple-500" %>
-          </div>
-        <% else %>
-          <div class="flex space-x-4 md:space-x-6 items-center ml-auto">
-            <%= link_to('Login', new_user_session_path, class: "text-gray-800 font-medium py-1 px-3 md:px-4 border border-gray-400 rounded shadow")  %>
-            <%= link_to('Sign Up', new_user_registration_path, class: "text-gray-800 font-medium py-1 px-3 md:px-4 border border-gray-400 rounded shadow")  %>
-          </div>
+          <li class="text-lg pr-8">
+            <%= link_to 'My Gigs', '#', class: "transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;" %>
+          </li>
         <% end %>
-      </div>
-    </nav>
+
+        <li class="text-lg pr-8"><a href="#" class="transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500" style="text-underline-offset: 8px;">Pricing</a></li>
+        <li class="text-lg pr-8">
+          <%= link_to 'Bands', bands_path, class: "transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;" %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hidden md:flex">
+      <% if user_signed_in? %>
+        <div class="flex md:space-x-6 items-center ml-auto">
+          <%= link_to "#" do %>
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full text-purple flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
+                </svg>
+              </div>
+            </div>
+          <% end %>
+          <%= link_to user_path(current_user) do %>
+            <div class="flex items-center mb-3">
+              <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-purple-500 text-white flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <%= current_user.firstname.capitalize %>
+            </div>
+          <% end %>
+          <%#= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "text-gray-800 font-medium hover:text-purple-500" %>
+        </div>
+      <% else %>
+        <div class="flex space-x-4 md:space-x-6 items-center ml-auto">
+          <%= link_to('Login', new_user_session_path, class: "text-gray-800 font-medium py-1 px-3 md:px-4 border border-gray-400 rounded shadow")  %>
+          <%= link_to('Sign Up', new_user_registration_path, class: "text-gray-800 font-medium py-1 px-3 md:px-4 border border-gray-400 rounded shadow")  %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</header>
+    <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="hidden flex w-full mx-auto text-center">
+    <div class="flex flex-col justify-center items-center w-full">
+      <% if user_signed_in? %>
+        <%= link_to 'Register Your Band', new_band_path, class: "block text-gray-900 cursor-pointer mt-1 py-3 transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;" %>
+        <%= link_to 'Profile', user_path(current_user), class: "block text-gray-900 cursor-pointer mt-1 py-3 transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;" %>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class: "block text-gray-900 cursor-pointer mt-1 py-3 transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;"%>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: "block text-gray-900 cursor-pointer mt-1 py-3 transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;"%>
+          <%= link_to 'Sign Up', new_user_registration_path, class: "block text-gray-900 cursor-pointer mt-1 py-3 transition duration-300 focus:outline-none focus:text-yellow-500 focus:underline hover:underline hover:text-yellow-500", style: "text-underline-offset: 8px;"%>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<script>
+// Gets the Mobile Nav icon by its ID
+let bars = document.getElementById('bars');
+
+// Gets the Mobile Nav container
+let mobileMenu = document.getElementById('mobileMenu');
+
+// Displays the Mobile Nav when clicked and changes the Nav Icon from three bars to an 'X'
+bars.addEventListener('click', function(){
+  mobileMenu.classList.toggle('hidden');
+});
+</script>
