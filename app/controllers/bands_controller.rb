@@ -21,7 +21,8 @@ class BandsController < ApplicationController
 
   # POST /bands or /bands.json
   def create
-    @band = current_user.band.new(band_params)
+    @band = Band.new(band_params)
+    @band.owner = current_user
 
     respond_to do |format|
       if @band.save
